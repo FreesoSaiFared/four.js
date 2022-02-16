@@ -65,9 +65,16 @@ function onWindowResize() {
 }
 
 function animate() {
-  requestAnimationFrame(animate)
+  	renderer.setAnimationLoop( function () {
+		// Rotate takes the rotation speed around the 6 planes:
+		hyperRenderer.rotate({ xy: 0, xz: 0, xw: 5, yz: 0, yw: 10, zw: 10 })
+  		// Update the hyperMesh
+  		hyperMesh.update(hyperRenderer)
+  
+		renderer.render( scene, camera );
 
-  render()
+	} );
+
 }
 
 function render() {
